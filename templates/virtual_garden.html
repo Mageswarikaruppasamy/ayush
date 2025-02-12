@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Herbal Garden</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2f1;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color:rgb(42, 111, 100);
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+
+        .container {
+            margin: 20px;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .category-card {
+            background-color: white;
+            padding: 15px;
+            width: 180px;
+            border-radius: 8px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-card h3 {
+            margin: 10px 0;
+            color: #004d40;
+        }
+
+        .plant-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        .plant-card {
+            background-color: white;
+            padding: 15px;
+            width: 220px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .plant-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .plant-card h3 {
+            color: #004d40;
+            margin: 10px 0;
+        }
+        img {
+            width: 200px; /* Adjust as needed */
+            height: 200px; /* Ensures uniform size */
+            object-fit: cover; /* Keeps aspect ratio and fills the box */
+            border-radius: 10px; /* Optional: adds rounded corners */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Virtual Herbal Garden</h1>
+    </header>
+
+    <div class="container">
+        <h2>Select an AYUSH System</h2>
+        <div class="categories">
+            <div class="category-card" onclick="showCategory('Ayurveda')">
+                <h3>Ayurveda</h3>
+            </div>
+            <div class="category-card" onclick="showCategory('Unani')">
+                <h3>Unani</h3>
+            </div>
+            <div class="category-card" onclick="showCategory('Siddha')">
+                <h3>Siddha</h3>
+            </div>
+            <div class="category-card" onclick="showCategory('Homeopathy')">
+                <h3>Homeopathy</h3>
+            </div>
+            <div class="category-card" onclick="showCategory('Yoga & Naturopathy')">
+                <h3>Yoga & Naturopathy</h3>
+            </div>
+        </div>
+
+        <div id="plants-container" class="plant-container"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='virtual.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbal Quiz</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 0;
+            margin: 0;
+        }
+        
+        h2 {
+            background-color:rgb(14, 54, 68);
+            height: 60px;
+            text-align: center;
+            padding:30px;
+            font-size: 44px;
+            color: white;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        #quiz-container {
+            width: 50%;
+            margin: auto;
+            margin-top: 50px;
+            background:rgb(207, 207, 207);
+            padding: 40px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        
+        button {
+            padding: 10px;
+            margin: 5px;
+            width: 80%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .option-btn {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            background-color:rgb(7, 75, 75);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .option-btn:hover {
+            background-color:rgb(2, 55, 80);
+        }
+        
+        #next-btn {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        #result-buttons {
+            margin-top: 20px;
+        }
+        
+        #retry-btn, #dashboard-btn {
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        
+        #retry-btn {
+            background-color:rgb(141, 9, 9); /* Orange for retry */
+        }
+        
+        #retry-btn:hover {
+            background-color:rgb(175, 68, 10);
+        }
+        
+        #dashboard-btn {
+            background-color: #2196F3; /* Blue for dashboard */
+        }
+        
+        #dashboard-btn:hover {
+            background-color: #0b7dda;
+        }
+        
+
+    </style>        
+</head>
+<body>
+    <h2>Herbal Garden Quiz</h2>
+    <div id="quiz-container">
+        <p id="question"></p>
+        <div id="options"></div>
+        <button id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+    <p id="result"></p>
+    <div id="result-buttons" style="display: none;">
+        <button id="retry-btn" onclick="restart()"> Retry Quiz</button>
+        <button id="dashboard-btn" onclick="goToDashboard()"> Back to Dashboard</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='quiz.js') }}"></script>
+</body>
+</html>

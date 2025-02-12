@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbal Remedies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        
+        #search-bar {
+            width: 60%;
+            padding: 10px;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        
+        #remedies-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .remedy-card {
+            width: 250px;
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .remedy-card img {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+        }
+        
+        .remedy-card button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            margin-top: 10%;
+            border-radius: 10px;
+        }
+    </style>        
+</head>
+<body>
+    <div class="container">
+        <h1>🌿 Herbal Remedies</h1>
+
+        <input type="text" id="search-bar" placeholder="Search remedies..." onkeyup="searchRemedies()">
+
+        <div id="remedies-container">
+            {% for remedy in remedies %}
+                <div class="remedy-card">
+                    <img src="{{ remedy[5] }}" alt="{{ remedy[1] }}">
+                    <h3>{{ remedy[1] }}</h3>
+                    <p><strong>Category:</strong> {{ remedy[2] }}</p>
+                    <p>{{ remedy[3] }}</p>
+                    <button onclick="showDetails('{{ remedy[1] }}', '{{ remedy[4] }}', '{{ remedy[5] }}')">See More</button>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h2 id="modal-title"></h2>
+                <img id="modal-image" src="" alt="">
+                <p id="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

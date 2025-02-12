@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYUSH - Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <style>
+        body {
+            background: linear-gradient(to right, #004d40, #009688);
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 380px;
+            text-align: center;
+            color: black;
+        }
+        .box input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .box input:focus {
+            outline: none;
+            border-color: #009688;
+            box-shadow: 0 0 5px rgba(0, 150, 136, 0.5);
+        }
+        .btn-custom {
+            background: #009688;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .btn-custom:hover {
+            background: #00796b;
+        }
+        .login-link {
+            margin-top: 10px;
+            display: block;
+            font-size: 14px;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container d-flex justify-content-center">
+        <center>
+            <img src="{{ url_for('static', filename='images.png') }}" alt="Ministry of AYUSH Logo" class="logo">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" id="flash-message">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div class="box">
+                <form action="/" method="POST" autocomplete="off">
+                    <label for="name"><b>Name</b></label>
+                    <input type="text" name="name" id="name" required>
+
+                    <label for="mail"><b>Email</b></label>
+                    <input type="email" name="mail" id="mail" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" name="password" id="password" required>
+
+                    <input type="submit" value="Sign Up" class="btn btn-custom">
+                </form>
+                <p class="login-link">Already registered? 
+                    <a href="{{ url_for('login') }}" class="text-primary"><strong>Login Here</strong></a>
+                </p>
+
+            </div>
+        </center>
+    </div>
+    <script>
+        // Auto-hide flash message after 3 seconds
+        setTimeout(function() {
+          var flashMessage = document.getElementById('flash-message');
+          if (flashMessage) {
+            flashMessage.style.transition = "opacity 0.5s";
+            flashMessage.style.opacity = "0";
+            setTimeout(() => flashMessage.style.display = "none", 500); // Fully hide after fade out
+          }
+        }, 2000);
+      </script>
+
+</body>
+</html>

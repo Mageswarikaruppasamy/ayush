@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AYUSH</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #004d40, #009688);
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 380px;
+            text-align: center;
+            color: black;
+        }
+        .box input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .box input:focus {
+            outline: none;
+            border-color: #009688;
+            box-shadow: 0 0 5px rgba(0, 150, 136, 0.5);
+        }
+        .btn-custom {
+            background: #009688;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .btn-custom:hover {
+            background: #00796b;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 15px;
+        }
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center">
+        <center>
+            <img src="{{ url_for('static', filename='images.png') }}" alt="Ministry of AYUSH" class="logo">
+            <div class="box">
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} text-center">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <!-- Login Form -->
+                <form method="POST" action="/login" autocomplete="off">
+                    <label for="name"><b>Name</b></label>
+                    <input type="text" name="name" id="name" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" name="password" id="password" required>
+
+                    <input type="submit" value="Login" class="btn btn-custom">
+                </form>
+            </div>
+        </center>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $(".alert").fadeOut(3000);
+        });
+    </script>
+</body>
+</html>
